@@ -1,0 +1,88 @@
+{
+  "sensors": [
+    {
+      "id": "1",
+      "name": "Temperature Sensor 1",
+      "type": "Temperature",
+      "location": "Lab 1",
+      "status": "active"
+    },
+    {
+      "id": "2",
+      "name": "Humidity Sensor 1",
+      "type": "Humidity",
+      "location": "Lab 2",
+      "status": "inactive"
+    },
+    {
+      "id": "3",
+      "name": "Pressure Sensor 1",
+      "type": "Pressure",
+      "location": "Lab 3",
+      "status": "active"
+    },
+    {
+      "id": "4",
+      "name": "Temperature Sensor 2",
+      "type": "Temperature",
+      "location": "Lab 1",
+      "status": "inactive"
+    },
+    {
+      "id": "5",
+      "name": "Humidity Sensor 2",
+      "type": "Humidity",
+      "location": "Lab 2",
+      "status": "active"
+    },
+    {
+      "id": "6",
+      "name": "Pressure Sensor 2",
+      "type": "Pressure",
+      "location": "Lab 3",
+      "status": "inactive"
+    },
+    {
+      "id": "7",
+      "name": "Temperature Sensor 3",
+      "type": "Temperature",
+      "location": "Lab 4",
+      "status": "active"
+    },
+    {
+      "id": "8",
+      "name": "Humidity Sensor 3",
+      "type": "Humidity",
+      "location": "Lab 5",
+      "status": "inactive"
+    },
+    {
+      "id": "9",
+      "name": "Pressure Sensor 3",
+      "type": "Pressure",
+      "location": "Lab 6",
+      "status": "active"
+    },
+    {
+      "id": "10",
+      "name": "Temperature Sensor 4",
+      "type": "Temperature",
+      "location": "Lab 7",
+      "status": "inactive"
+    },
+    {
+      "id": "11",
+      "name": "Humidity Sensor 4",
+      "type": "Humidity",
+      "location": "Lab 8",
+      "status": "active"
+    },
+    {
+      "id": "12",
+      "name": "Pressure Sensor 4",
+      "type": "Pressure",
+      "location": "Lab 9",
+      "status": "inactive"
+    }
+  ]
+}
