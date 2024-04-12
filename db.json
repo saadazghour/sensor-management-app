@@ -83,6 +83,13 @@
       "type": "Pressure",
       "location": "Lab 9",
       "status": "inactive"
+    },
+    {
+      "id": "13",
+      "name": "Pressure Sensor 13",
+      "type": "Pressure",
+      "location": "Lab 10",
+      "status": "active"
     }
   ]
 }
