@@ -1,20 +1,6 @@
 {
   "sensors": [
     {
-      "id": "f8dd",
-      "name": "Chloe Hart",
-      "type": "Suscipit quis libero",
-      "location": "Et aut id commodo se",
-      "status": "inactive"
-    },
-    {
-      "id": "1372",
-      "name": "Carla Barlow",
-      "type": "Ea vel eum nisi faci",
-      "location": "Eiusmod perferendis ",
-      "status": "inactive"
-    },
-    {
       "id": "bdcd",
       "name": "Thor Chambers",
       "type": "Quaerat voluptate ni",
