@@ -7,13 +7,13 @@ export const fetchSensors = async () => {
 };
 
 export const addSensor = async (sensor) => {
-  return await axios.post(`${API_URL}`, sensor);
+  return await axios.post(`${API_URL}/sensors`, sensor);
 };
 
 export const deleteSensor = async (id) => {
-  return await axios.delete(`${API_URL}/${id}`);
+  return await axios.delete(`${API_URL}/sensors/${id}`);
 };
 
 export const updateSensor = async (id, sensorData) => {
-  return await axios.put(`${API_URL}/${id}`, sensorData);
+  return await axios.put(`${API_URL}/sensors/${id}`, sensorData);
 };
