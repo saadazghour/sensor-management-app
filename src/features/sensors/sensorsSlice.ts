@@ -41,11 +41,11 @@ export const addSensorAsync = createAsyncThunk<Sensor, Omit<Sensor, "id">>(
   }
 );
 
-export const deleteSensorAsync = createAsyncThunk<Sensor, string>(
+export const deleteSensorAsync = createAsyncThunk<string, string>(
   "sensors/deleteSensor",
   async (sensorId) => {
-    const res = await sensorsAPI.deleteSensor(sensorId);
-    return res.data;
+    await sensorsAPI.deleteSensor(sensorId);
+    return sensorId;
   }
 );
 
