@@ -9,5 +9,7 @@
   "successfully": "Successfully",
   "sensorDeletedSuccess": "Sensor deleted successfully",
   "sensorDeleteFailed": "Failed to delete the sensor.",
-  "addNewSensor": "Add New Sensor"
+  "addNewSensor": "Add New Sensor",
+  "edit": "Edit",
+  "delete": "Delete"
 }

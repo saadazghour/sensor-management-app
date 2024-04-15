@@ -9,5 +9,7 @@
   "successfully": "Avec succès",
   "sensorDeletedSuccess": "Capteur supprimé avec succès",
   "sensorDeleteFailed": "Échec de la suppression du capteur.",
-  "addNewSensor": "Ajouter un Nouveau Capteur"
+  "addNewSensor": "Ajouter un Nouveau Capteur",
+  "edit": "Modifier",
+  "delete": "Supprimer"
 }

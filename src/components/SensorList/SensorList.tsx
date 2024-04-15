@@ -150,14 +150,14 @@ function SensorList() {
                         onClick={() => handleEdit(sensor)}
                         className="text-blue-600 hover:text-blue-900"
                       >
-                        Edit
+                        {t("edit")}
                       </button>
 
                       <button
                         onClick={() => handleDelete(sensor.id)}
                         className="text-red-600 hover:text-red-900"
                       >
-                        Delete
+                        {t("delete")}
                       </button>
                     </td>
                   </tr>
