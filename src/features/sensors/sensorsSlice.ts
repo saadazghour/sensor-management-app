@@ -28,16 +28,14 @@ const initialState: SensorsState = {
 export const fetchSensors = createAsyncThunk<Sensor[]>(
   "sensors/fetchSensors",
   async () => {
-    const res = await sensorsAPI.fetchSensors();
-    return res.data;
+    return await sensorsAPI.fetchSensors();
   }
 );
 
 export const addSensorAsync = createAsyncThunk<Sensor, Omit<Sensor, "id">>(
   "sensors/addSensor",
   async (sensor) => {
-    const res = await sensorsAPI.addSensor(sensor);
-    return res.data;
+    return await sensorsAPI.addSensor(sensor);
   }
 );
 
@@ -53,8 +51,7 @@ export const updateSensorAsync = createAsyncThunk<
   Sensor,
   { sensorId: Sensor["id"]; sensorData: Omit<Sensor, "id"> }
 >("sensors/updateSensor", async ({ sensorId, sensorData }) => {
-  const res = await sensorsAPI.updateSensor(sensorId, sensorData);
-  return res.data;
+  return await sensorsAPI.updateSensor(sensorId, sensorData);
 });
 
 const sensorsSlice = createSlice({
