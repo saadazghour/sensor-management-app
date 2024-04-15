@@ -9,14 +9,6 @@ import {
 import Alert from "../Alert/Alert";
 import { RootState } from "../../app/store";
 
-interface SensorData {
-  id?: string;
-  name: string;
-  type: string;
-  status: string;
-  location: string;
-}
-
 const SensorForm = () => {
   const { id } = useParams<{ id?: string }>();
 
