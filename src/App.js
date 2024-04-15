@@ -13,6 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<SensorList />} />
           <Route path="/add-sensor" element={<SensorForm />} />
+          <Route path="/sensor/:id" element={<SensorForm />} />
         </Routes>
       </div>
     </Router>
