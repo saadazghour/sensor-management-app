@@ -10,6 +10,8 @@ import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
 import Alert from "../Alert/Alert";
 import LoadingSpinner from "../../components/Alert/LoadingSpinner";
 import { RootState } from "../../app/store";
+import { useTranslation } from "react-i18next";
+import { LanguageSwitcher } from "../Alert/LanguageSwitcher";
 
 interface Sensor {
   id: string;
@@ -23,6 +25,7 @@ function SensorList() {
   const dispatch = useDispatch();
   const sensors = useSelector((state: RootState) => state.sensors.sensors);
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [isModalOpen, setModalOpen] = useState<boolean>(false);
@@ -52,14 +55,14 @@ function SensorList() {
     if (selectedId) {
       dispatch(deleteSensorAsync(selectedId))
         .then(() => {
-          setAlertMessage("Sensor successfully deleted.");
+          setAlertMessage(t("sensorDeletedSuccess"));
           setShowAlert(true);
           setTimeout(() => setShowAlert(false), 5000);
           setIsLoading(true);
           dispatch(fetchSensors()).finally(() => setIsLoading(false));
         })
         .catch((error: any) => {
-          setAlertMessage("Failed to delete the sensor.");
+          setAlertMessage(t("sensorDeleteFailed"));
           setShowAlert(true);
           setTimeout(() => setShowAlert(false), 5000);
           console.error("Deletion failed:", error);
@@ -77,14 +80,22 @@ function SensorList() {
             onClick={() => navigate("/add-sensor")}
             className="text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-500 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
-            Add New Sensor
+            {t("addNewSensor")}
           </button>
+          <div className="relative">
+            <LanguageSwitcher />
+          </div>
+        </div>
+
+        <div className="flex flex-col items-center justify-center mb-6">
+          <h1>{t("welcome")}</h1>
+          <p>{t("description")}</p>
         </div>
 
         {showAlert && (
           <Alert
             message={alertMessage}
-            type={alertMessage.includes("successfully") ? "green" : "red"}
+            type={alertMessage.includes(t("successfully")) ? "green" : "red"}
             onClose={() => setShowAlert(false)}
           />
         )}
@@ -97,19 +108,19 @@ function SensorList() {
               <thead className="text-xl text-gray-700 uppercase bg-gray-50 ">
                 <tr>
                   <th scope="col" className="px-6 py-3">
-                    Sensor Name
+                    {t("sensorName")}
                   </th>
                   <th scope="col" className="px-6 py-3">
-                    Type
+                    {t("type")}
                   </th>
                   <th scope="col" className="px-6 py-3">
-                    Location
+                    {t("location")}
                   </th>
                   <th scope="col" className="px-6 py-3">
-                    Status
+                    {t("status")}
                   </th>
                   <th scope="col" className="px-6 py-3">
-                    Actions
+                    {t("actions")}
                   </th>
                 </tr>
               </thead>
