@@ -5,6 +5,8 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
+import { I18nextProvider } from "react-i18next";
+import i18n from "./i18n";
 
 // Ensure that the element exists before trying to render the app to it.
 const rootElement = document.getElementById("root");
@@ -16,7 +18,9 @@ if (rootElement) {
     <React.StrictMode>
       {/* Provider is a component that makes the Redux store available to the connect() calls in the component hierarchy below <App />. It also makes the Redux store available to the React DevTools. */}
       <Provider store={store}>
-        <App />
+        <I18nextProvider i18n={i18n}>
+          <App />
+        </I18nextProvider>
       </Provider>
     </React.StrictMode>
   );
