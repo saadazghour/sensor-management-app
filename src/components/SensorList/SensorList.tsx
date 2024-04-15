@@ -1,59 +1,72 @@
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "../../hooks/hooks";
+
 import {
   deleteSensorAsync,
   fetchSensors,
 } from "../../../src/features/sensors/sensorsSlice";
-import { Table } from "flowbite-react";
 import { useNavigate } from "react-router-dom";
 import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
 import Alert from "../Alert/Alert";
 import LoadingSpinner from "../../components/Alert/LoadingSpinner";
+import { RootState } from "../../app/store";
+
+interface Sensor {
+  id: string;
+  name: string;
+  type: string;
+  location: string;
+  status: string;
+}
 
 function SensorList() {
   const dispatch = useDispatch();
-
-  const sensors = useSelector((state) => state.sensors.sensors);
+  const sensors = useSelector((state: RootState) => state.sensors.sensors);
   const navigate = useNavigate();
 
-  const [selectedId, setSelectedId] = useState(null);
-  const [isModalOpen, setModalOpen] = useState(false);
-
-  const [isLoading, setIsLoading] = useState(false);
-  const [alertMessage, setAlertMessage] = useState("");
-  const [showAlert, setShowAlert] = useState(false);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [isModalOpen, setModalOpen] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [alertMessage, setAlertMessage] = useState<string>("");
+  const [showAlert, setShowAlert] = useState<boolean>(false);
 
   useEffect(() => {
     setIsLoading(true);
-    dispatch(fetchSensors()).finally(() => setIsLoading(false));
+    dispatch(fetchSensors())
+      .then(() => setIsLoading(false))
+      .catch((error: any) => {
+        console.error("Failed to fetch sensors:", error.message);
+      });
   }, [dispatch]);
 
-  const handleEdit = (sensor) => {
+  const handleEdit = (sensor: Sensor) => {
     navigate(`/sensor/${sensor.id}`);
   };
 
-  const handleDelete = (id) => {
+  const handleDelete = (id: string) => {
     setSelectedId(id);
     setModalOpen(true);
   };
 
   const confirmDelete = () => {
-    dispatch(deleteSensorAsync(selectedId))
-      .then(() => {
-        setAlertMessage("Sensor successfully deleted.");
-        setShowAlert(true);
-        setTimeout(() => setShowAlert(false), 5000);
-        setIsLoading(true);
-        dispatch(fetchSensors()).finally(() => setIsLoading(false));
-      })
-      .catch((error) => {
-        setAlertMessage("Failed to delete the sensor.");
-        setShowAlert(true);
-        setTimeout(() => setShowAlert(false), 5000);
-        console.error("Deletion failed:", error);
-      });
+    if (selectedId) {
+      dispatch(deleteSensorAsync(selectedId))
+        .then(() => {
+          setAlertMessage("Sensor successfully deleted.");
+          setShowAlert(true);
+          setTimeout(() => setShowAlert(false), 5000);
+          setIsLoading(true);
+          dispatch(fetchSensors()).finally(() => setIsLoading(false));
+        })
+        .catch((error: any) => {
+          setAlertMessage("Failed to delete the sensor.");
+          setShowAlert(true);
+          setTimeout(() => setShowAlert(false), 5000);
+          console.error("Deletion failed:", error);
+        });
 
-    setModalOpen(false);
+      setModalOpen(false);
+    }
   };
 
   return (
@@ -101,7 +114,7 @@ function SensorList() {
                 </tr>
               </thead>
               <tbody>
-                {sensors.map((sensor) => (
+                {sensors.map((sensor: Sensor) => (
                   <tr
                     key={sensor.id}
                     className="bg-white border-b hover:bg-gray-50 "
