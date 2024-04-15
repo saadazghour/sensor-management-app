@@ -28,6 +28,10 @@ function SensorList() {
     dispatch(fetchSensors()).finally(() => setIsLoading(false));
   }, [dispatch]);
 
+  const handleEdit = (sensor) => {
+    navigate(`/sensor/${sensor.id}`);
+  };
+
   const handleDelete = (id) => {
     setSelectedId(id);
     setModalOpen(true);
@@ -50,10 +54,6 @@ function SensorList() {
       });
 
     setModalOpen(false);
-  };
-
-  const handleEdit = (sensor) => {
-    navigate(`/edit-sensor/${sensor.id}`, { state: { sensor } });
   };
 
   return (
