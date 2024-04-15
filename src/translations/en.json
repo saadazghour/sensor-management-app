@@ -1,0 +1,13 @@
+{
+  "welcome": "Welcome to Sensor Management!",
+  "description": "This is an app dedicated to the management and monitoring of sensors.",
+  "sensorName": "Sensor Name",
+  "type": "Type",
+  "location": "Location",
+  "status": "Status",
+  "actions": "Actions",
+  "successfully": "Successfully",
+  "sensorDeletedSuccess": "Sensor deleted successfully",
+  "sensorDeleteFailed": "Failed to delete the sensor.",
+  "addNewSensor": "Add New Sensor"
+}
