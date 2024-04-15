@@ -1,32 +1,25 @@
 {
   "sensors": [
     {
-      "id": "bdcd",
-      "name": "Thor Chambers",
-      "type": "Quaerat voluptate ni",
-      "location": "Delectus doloribus ",
-      "status": "active"
-    },
-    {
-      "id": "3a91",
-      "name": " Desirae Oconnor saadazghou88",
-      "type": "Officia quo quis ess saadazghour",
-      "status": "inactive",
-      "location": "Sint possimus verit saadazghour"
-    },
-    {
       "id": "f087ef07-0b03-4bdb-bf15-81dc6f548f4c",
-      "name": "Lenore Whitfield",
-      "type": "Et ipsum debitis su",
+      "name": "saadazghour",
+      "type": "saadazghour",
       "status": "active",
-      "location": "Lorem praesentium al"
+      "location": "saadazghour"
     },
     {
       "id": "ad2106f5-cdd6-466d-9b86-d158890fd442",
       "name": "Heather Wiley Saad",
       "type": "Esse minim laboriosa",
-      "status": "active",
+      "status": "inactive",
       "location": "Ut reprehenderit aut"
+    },
+    {
+      "id": "632c4bd3-7210-49c6-8252-d1aa699f644a",
+      "name": "Montana Taylor saadazghour",
+      "type": "saadazghour",
+      "status": "active",
+      "location": "saadazghour"
     }
   ]
 }
