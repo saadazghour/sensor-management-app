@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import {
   fetchSensors,
@@ -14,7 +14,13 @@ import {
 } from "../../features/sensors/sensorsSlice";
 import Alert from "../Alert/Alert";
 
-const SensorForm = ({ sensor, setIsEditing }) => {
+const SensorForm = () => {
+  const { id } = useParams();
+
+  const sensor = useSelector((state) =>
+    state.sensors.sensors.find((s) => s.id === id)
+  );
+
   const [sensorData, setSensorData] = useState({
     id: sensor?.id || uuidv4(),
     name: sensor?.name || "",
@@ -30,7 +36,7 @@ const SensorForm = ({ sensor, setIsEditing }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (sensor) {
+    if (id && sensor) {
       setSensorData({
         id: sensor.id,
         name: sensor.name,
@@ -39,22 +45,22 @@ const SensorForm = ({ sensor, setIsEditing }) => {
         location: sensor.location,
       });
     }
-  }, [sensor]);
+  }, [id, sensor]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setSensorData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleCloseAlert = () => {
-    setShowAlert(false);
-  };
+  const handleCloseAlert = () => setShowAlert(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const action = sensor ? updateSensorAsync : addSensorAsync;
+    const action = id
+      ? updateSensorAsync({ sensorId: id, sensor: sensorData })
+      : addSensorAsync(sensorData);
 
-    dispatch(action(sensorData))
+    dispatch(action)
       .then(() => {
         // After submission, the form fields are cleared.
         setSensorData({ name: "", type: "", location: "", status: "" });
@@ -69,8 +75,6 @@ const SensorForm = ({ sensor, setIsEditing }) => {
         setShowAlert(false);
         console.error("Error submitting sensor:", error);
       });
-
-    if (setIsEditing) setIsEditing(false); // If in editing mode, close the form upon submission
   };
   return (
     <form className="max-w-lg mx-auto my-44" onSubmit={handleSubmit}>
