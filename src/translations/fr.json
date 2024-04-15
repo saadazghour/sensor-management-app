@@ -1,0 +1,13 @@
+{
+  "welcome": "Bienvenue dans Gestion de Capteurs !",
+  "description": "Ceci est une application dédiée à la gestion et au suivi des capteurs.",
+  "sensorName": "Nom du Capteur",
+  "type": "Type",
+  "location": "Emplacement",
+  "status": "Statut",
+  "actions": "Actions",
+  "successfully": "Avec succès",
+  "sensorDeletedSuccess": "Capteur supprimé avec succès",
+  "sensorDeleteFailed": "Échec de la suppression du capteur.",
+  "addNewSensor": "Ajouter un Nouveau Capteur"
+}
