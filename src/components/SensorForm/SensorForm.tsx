@@ -3,21 +3,24 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import {
-  fetchSensors,
-  addSensor,
-  deleteSensor,
-  updateSensor,
-} from "../../api/sensorsAPI";
-import {
   addSensorAsync,
   updateSensorAsync,
 } from "../../features/sensors/sensorsSlice";
 import Alert from "../Alert/Alert";
+import { RootState } from "../../app/store";
+
+interface SensorData {
+  id?: string;
+  name: string;
+  type: string;
+  status: string;
+  location: string;
+}
 
 const SensorForm = () => {
-  const { id } = useParams();
+  const { id } = useParams<{ id?: string }>();
 
-  const sensor = useSelector((state) =>
+  const sensor = useSelector((state: RootState) =>
     state.sensors.sensors.find((s) => s.id === id)
   );
 
@@ -29,7 +32,6 @@ const SensorForm = () => {
     location: sensor?.location || "",
   });
 
-  const [status, setStatus] = useState("");
   const [alertMessage, setAlertMessage] = useState("");
   const [showAlert, setShowAlert] = useState(false);
   const dispatch = useDispatch();
@@ -47,30 +49,30 @@ const SensorForm = () => {
     }
   }, [id, sensor]);
 
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     const { name, value } = e.target;
     setSensorData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleCloseAlert = () => setShowAlert(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
-    const action = id
-      ? updateSensorAsync({ sensorId: id, sensor: sensorData })
+    const action: any = id
+      ? updateSensorAsync({ sensorId: id, sensorData: sensorData })
       : addSensorAsync(sensorData);
 
     dispatch(action)
       .then(() => {
         // After submission, the form fields are cleared.
-        setSensorData({ name: "", type: "", location: "", status: "" });
+        setSensorData({ id: "", name: "", type: "", location: "", status: "" });
         setAlertMessage(
           `Sensor has been ${sensor ? "Updated" : "Added"} successfully!`
         );
         setShowAlert(true);
         setTimeout(() => navigate("/"), 3000); // navigate after showing alert
       })
-      .catch((error) => {
+      .catch((error: any) => {
         setAlertMessage("Failed to update the sensor.");
         setShowAlert(false);
         console.error("Error submitting sensor:", error);
